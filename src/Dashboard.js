@@ -24,9 +24,6 @@ import {
   Legend,
 } from "recharts";
 import { PageLayout } from "./components/Layout";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
 
 // Sample data
 const performanceData = [
@@ -101,12 +98,11 @@ const Dashboard = () => {
   return (
     <PageLayout>
       <div className="flex min-h-screen bg-slate-50">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="ok grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Stats Cards */}
           <StatCard title="Total Leads" value="1,234" trend="+12%" />
           <StatCard title="Conversion Rate" value="23.5%" trend="+5%" />
           <StatCard title="Revenue" value="$45,678" trend="+8%" />
-          <StatCard title="Leads" value="1,234" trend="+12%" />
 
           {/* Line Chart */}
           <div className="col-span-full bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow duration-300">
@@ -225,48 +221,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      {/* Calendar */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          height: 10,
-          width: "100%",
-          maxWidth: 580,
-          backgroundColor: "#f7f7f7",
-          border: "1px solid #ddd",
-        }}
-      >
-        <FullCalendar
-          plugins={[dayGridPlugin]}
-          initialView="dayGridMonth"
-          events={[
-            { title: "Event 1", start: "2023-03-01", end: "2023-03-02" },
-            { title: "Event 2", start: "2023-03-05", end: "2023-03-06" },
-          ]}
-          headerToolbar={{ left: "prev,next today", center: "title" }}
-          nowIndicator={true}
-          slotMinTime="08:00"
-          slotMaxTime="18:00"
-          slotDuration="01:00"
-          allDaySlot={false}
-          style={{
-            backgroundColor: "#f7f7f7",
-            border: "1px solid #ddd",
-            header: {
-              backgroundColor: "#337ab7",
-              color: "#fff",
-            },
-            ".fc-day": {
-              backgroundColor: "#f9f9f9",
-            },
-            ".fc-day.fc-today": {
-              backgroundColor: "#dff0d8",
-            },
-          }}
-        />
-      </div>
 
       {/* Lead Details Modal */}
       {isLeadModalOpen && selectedLead && (
@@ -320,15 +274,28 @@ const NavItem = ({ icon, text, isOpen, active, href = "/" }) => (
 );
 export { NavItem };
 
-const StatCard = ({ title, value, trend }) => (
-  <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
-    <h3 className="text-slate-500 text-sm">{title}</h3>
-    <div className="flex items-center mt-2">
-      <span className="text-2xl font-semibold">{value}</span>
-      <span className="ml-2 text-sm text-green-500">{trend}</span>
+const StatCard = ({ title, value, trend }) => {
+  return (
+    <div
+      className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+      style={{
+        "--animation-color": "hsl(200, 80%, 50%)",
+        "--text-color": "hsl(200, 80%, 20%)",
+      }}
+    >
+      <h3 className="text-slate-500 text-sm">{title}</h3>
+      <div className="flex items-center mt-2">
+        <span
+          className="text-2xl font-semibold"
+          style={{ color: "var(--text-color)" }}
+        >
+          {value}
+        </span>
+        <span className="ml-2 text-sm text-green-500">{trend}</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const StatusBadge = ({ status }) => {
   const colors = {
