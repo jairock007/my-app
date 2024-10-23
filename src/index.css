@@ -18,3 +18,21 @@ code {
 .mobile-sidebar{
   width: 5rem;
 }
+
+@media only screen and (max-width: 768px) {
+  .fc-header-toolbar {
+    flex-direction: column;
+  }
+  .fc-button-group {
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .fc-day-grid-container {
+    overflow-x: auto;
+  }
+  .fc-day-grid {
+    width: 100%;
+  }
+}

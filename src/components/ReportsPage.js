@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { reportsData } from "./data";
 import { PageLayout } from "./Layout";
-// import { StatusBadge } from "../Dashboard";
 
 const ReportsPage = () => {
   const [selectedReport, setSelectedReport] = useState("leads");
@@ -12,12 +11,12 @@ const ReportsPage = () => {
 
   return (
     <PageLayout>
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-6">Reports</h1>
+      <div className="p-6 md:p-12">
+        <h1 className="text-2xl md:text-4xl font-bold mb-6">Reports</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <select
-            className="border rounded-lg px-4 py-2"
+            className="border rounded-lg px-4 py-2 md:px-6 md:py-3"
             value={selectedReport}
             onChange={(e) => setSelectedReport(e.target.value)}
           >
@@ -27,7 +26,7 @@ const ReportsPage = () => {
           </select>
 
           <select
-            className="border rounded-lg px-4 py-2"
+            className="border rounded-lg px-4 py-2 md:px-6 md:py-3"
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
           >
@@ -37,24 +36,24 @@ const ReportsPage = () => {
           </select>
         </div>
 
-        <div className="bg-white p-6 rounded-xl shadow-sm">
+        <div className="bg-white p-6 md:p-12 rounded-xl shadow-sm">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">
+            <h2 className="text-xl md:text-3xl font-semibold">
               {selectedReport.charAt(0).toUpperCase() + selectedReport.slice(1)}{" "}
               Report
             </h2>
-            <div className="space-x-2">
-              <button className="px-4 py-2 border rounded-lg hover:bg-gray-50">
+            <div className="space-x-2 md:space-x-4">
+              <button className="px-4 py-2 md:px-6 md:py-3 border rounded-lg hover:bg-gray-50">
                 Export PDF
               </button>
-              <button className="px-4 py-2 border rounded-lg hover:bg-gray-50">
+              <button className="px-4 py-2 md:px-6 md:py-3 border rounded-lg hover:bg-gray-50">
                 Export CSV
               </button>
             </div>
           </div>
 
           {selectedReport === "leads" && (
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500">
+            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 md:p-12 text-center text-gray-500">
               <h3>
                 Total Leads:{" "}
                 <span className="font-bold">{reportData.totalLeads}</span>
@@ -75,7 +74,7 @@ const ReportsPage = () => {
           )}
 
           {selectedReport === "conversion" && (
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500">
+            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 md:p-12 text-center text-gray-500">
               <h3>
                 Total Conversions:{" "}
                 <span className="font-bold">{reportData.totalConversions}</span>
@@ -94,7 +93,7 @@ const ReportsPage = () => {
           )}
 
           {selectedReport === "revenue" && (
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center text-gray-500">
+            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 md:p-12 text-center text-gray-500">
               <h3>
                 Total Revenue:{" "}
                 <span className="font-bold">${reportData.totalRevenue}</span>

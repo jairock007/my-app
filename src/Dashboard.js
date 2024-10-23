@@ -24,6 +24,9 @@ import {
   Legend,
 } from "recharts";
 import { PageLayout } from "./components/Layout";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
 
 // Sample data
 const performanceData = [
@@ -89,6 +92,11 @@ const Dashboard = () => {
   // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedLead, setSelectedLead] = useState(null);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
+  const [view, setView] = useState("dayGridMonth");
+
+  const handleViewChange = (newView) => {
+    setView(newView);
+  };
 
   return (
     <PageLayout>
@@ -216,6 +224,48 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* Calendar */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          height: 10,
+          width: "100%",
+          maxWidth: 580,
+          backgroundColor: "#f7f7f7",
+          border: "1px solid #ddd",
+        }}
+      >
+        <FullCalendar
+          plugins={[dayGridPlugin]}
+          initialView="dayGridMonth"
+          events={[
+            { title: "Event 1", start: "2023-03-01", end: "2023-03-02" },
+            { title: "Event 2", start: "2023-03-05", end: "2023-03-06" },
+          ]}
+          headerToolbar={{ left: "prev,next today", center: "title" }}
+          nowIndicator={true}
+          slotMinTime="08:00"
+          slotMaxTime="18:00"
+          slotDuration="01:00"
+          allDaySlot={false}
+          style={{
+            backgroundColor: "#f7f7f7",
+            border: "1px solid #ddd",
+            header: {
+              backgroundColor: "#337ab7",
+              color: "#fff",
+            },
+            ".fc-day": {
+              backgroundColor: "#f9f9f9",
+            },
+            ".fc-day.fc-today": {
+              backgroundColor: "#dff0d8",
+            },
+          }}
+        />
       </div>
 
       {/* Lead Details Modal */}
