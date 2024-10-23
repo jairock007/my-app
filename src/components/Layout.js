@@ -4,13 +4,30 @@ import { Layout, Menu, X, Users, BarChart3, FileText } from "lucide-react";
 // Layout wrapper component that provides consistent navigation
 const PageLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+      setIsSidebarOpen(false);
+    } else {
+      setIsMobile(false);
+      setIsSidebarOpen(true);
+    }
+  };
+
+  React.useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-slate-50">
       {/* Sidebar */}
       <div
         className={`fixed h-full bg-slate-800 text-white transition-all duration-300 ease-in-out ${
-          isSidebarOpen ? "w-64" : "w-20"
+          isSidebarOpen || !isMobile ? "w-64" : "w-20"
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
@@ -64,7 +81,7 @@ const PageLayout = ({ children }) => {
       {/* Main Content */}
       <div
         className={`flex-1 p-8 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-20"
+          isSidebarOpen || !isMobile ? "ml-64" : "ml-20"
         }`}
       >
         {children}
