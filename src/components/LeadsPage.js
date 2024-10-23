@@ -11,7 +11,7 @@ import {
   BarChart3,
   FileText,
 } from "lucide-react"; // Importing necessary icons
-import { NavItem } from "./Layout";
+// import { NavItem } from "./Layout";
 import { PageLayout } from "./Layout";
 import { StatusBadge } from "../Dashboard"; // Assuming StatusBadge is defined in Dashboard.js
 

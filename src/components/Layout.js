@@ -5,12 +5,16 @@ import { Layout, Menu, X, Users, BarChart3, FileText } from "lucide-react";
 const PageLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isWrongButtonClicked, setIsWrongButtonClicked] = useState(false);
 
   const handleResize = () => {
+    //console.log("handleResize called");
     if (window.innerWidth < 768) {
+      //console.log("Mobile detected");
       setIsMobile(true);
       setIsSidebarOpen(false);
     } else {
+      //console.log("Desktop detected");
       setIsMobile(false);
       setIsSidebarOpen(true);
     }
@@ -27,8 +31,10 @@ const PageLayout = ({ children }) => {
       {/* Sidebar */}
       <div
         className={`fixed h-full bg-slate-800 text-white transition-all duration-300 ease-in-out ${
-          isSidebarOpen || !isMobile ? "w-64" : "w-20"
-        }`}
+          (isSidebarOpen && !isWrongButtonClicked) || !isMobile
+            ? "w-64"
+            : "w-20"
+        } ${isWrongButtonClicked ? "mobile-sidebar" : ""}`}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
           <h1
@@ -39,7 +45,10 @@ const PageLayout = ({ children }) => {
             EzyMetrics
           </h1>
           <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            onClick={() => {
+              setIsWrongButtonClicked(true);
+              setIsSidebarOpen(false);
+            }}
             className="p-2 rounded-lg hover:bg-slate-700 transition-colors duration-200"
           >
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}

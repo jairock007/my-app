@@ -86,7 +86,7 @@ const analyticsData = {
 };
 
 const Dashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedLead, setSelectedLead] = useState(null);
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
@@ -98,6 +98,7 @@ const Dashboard = () => {
           <StatCard title="Total Leads" value="1,234" trend="+12%" />
           <StatCard title="Conversion Rate" value="23.5%" trend="+5%" />
           <StatCard title="Revenue" value="$45,678" trend="+8%" />
+          <StatCard title="Leads" value="1,234" trend="+12%" />
 
           {/* Line Chart */}
           <div className="col-span-full bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition-shadow duration-300">
