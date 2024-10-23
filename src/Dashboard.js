@@ -23,6 +23,7 @@ import {
   Bar,
   Legend,
 } from "recharts";
+import { PageLayout } from "./components/Layout";
 
 // Sample data
 const performanceData = [
@@ -90,66 +91,8 @@ const Dashboard = () => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      {/* Sidebar */}
-      <div
-        className={`fixed h-full bg-slate-800 text-white transition-all duration-300 ease-in-out ${
-          isSidebarOpen ? "w-64" : "w-20"
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-slate-700">
-          <h1
-            className={`font-bold text-xl transition-opacity duration-200 ${
-              isSidebarOpen ? "opacity-100" : "opacity-0 hidden"
-            }`}
-          >
-            EzyMetrics
-          </h1>
-          <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="p-2 rounded-lg hover:bg-slate-700 transition-colors duration-200"
-          >
-            {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        <nav className="mt-8 space-y-2">
-          <NavItem
-            icon={<Layout />}
-            text="Dashboard"
-            isOpen={isSidebarOpen}
-            active
-          />
-          <NavItem
-            icon={<Users />}
-            text="Leads"
-            isOpen={isSidebarOpen}
-            href="/leads"
-            active={window.location.pathname === "/leads"}
-          />
-          <NavItem
-            icon={<BarChart3 />}
-            text="Analytics"
-            isOpen={isSidebarOpen}
-            href="/analytics"
-            active={window.location.pathname === "/analytics"}
-          />
-          <NavItem
-            icon={<FileText />}
-            text="Reports"
-            isOpen={isSidebarOpen}
-            href="/reports"
-            active={window.location.pathname === "/reports"}
-          />
-        </nav>
-      </div>
-
-      {/* Main Content */}
-      <div
-        className={`flex-1 p-8 transition-all duration-300 ${
-          isSidebarOpen ? "ml-64" : "ml-20"
-        }md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64`}
-      >
+    <PageLayout>
+      <div className="flex min-h-screen bg-slate-50">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Stats Cards */}
           <StatCard title="Total Leads" value="1,234" trend="+12%" />
@@ -302,7 +245,7 @@ const Dashboard = () => {
           </div>
         </div>
       )}
-    </div>
+    </PageLayout>
   );
 };
 
