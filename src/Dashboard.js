@@ -95,6 +95,8 @@ const Dashboard = () => {
       <div
         className={`fixed h-full bg-slate-800 text-white transition-all duration-300 ease-in-out ${
           isSidebarOpen ? "w-64" : "w-20"
+        } md:w-64 lg:w-64 xl:w-64 2xl:w-64 ${
+          isSidebarOpen ? "md:w-64" : "md:w-20"
         }`}
       >
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
@@ -106,7 +108,13 @@ const Dashboard = () => {
             EzyMetrics
           </h1>
           <button
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            onClick={() => {
+              setIsSidebarOpen(!isSidebarOpen);
+              const sidebarElement = document.querySelector(
+                ".fixed.h-full.bg-slate-800.text-white.transition-all.duration-300.ease-in-out"
+              );
+              sidebarElement.classList.toggle("open");
+            }}
             className="p-2 rounded-lg hover:bg-slate-700 transition-colors duration-200"
           >
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
@@ -148,6 +156,8 @@ const Dashboard = () => {
       <div
         className={`flex-1 p-8 transition-all duration-300 ${
           isSidebarOpen ? "ml-64" : "ml-20"
+        } md:ml-64 lg:ml-64 xl:ml-64 2xl:ml-64 ${
+          isSidebarOpen ? "md:ml-64" : "md:ml-20"
         }`}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -281,7 +291,7 @@ const Dashboard = () => {
           onClick={() => setIsLeadModalOpen(false)}
         >
           <div
-            className="bg-white rounded-xl p-6 w-full max-w-lg transform transition-all duration-300 scale-100 opacity-100"
+            className="bg-white rounded-xl p-6 w-full max-w-lg transform transition-all duration-300 scale-100 opacity-100 md:max-w-md lg:max-w-lg xl:max-w-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
