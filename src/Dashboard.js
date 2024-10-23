@@ -324,6 +324,7 @@ const NavItem = ({ icon, text, isOpen, active, href = "/" }) => (
     </span>
   </a>
 );
+export { NavItem };
 
 const StatCard = ({ title, value, trend }) => (
   <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1">
