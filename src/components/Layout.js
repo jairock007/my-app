@@ -42,7 +42,7 @@ const PageLayout = ({ children }) => {
               isSidebarOpen ? "opacity-100" : "opacity-0 hidden"
             }`}
           >
-            EzyMetrics
+           TESLA
           </h1>
           <button
             onClick={() => {
